@@ -1,0 +1,34 @@
+For practical usage :
+
+Raku Threat Detection:
+raku
+
+Copy
+my $detector = ThreatDetector.new;
+my $log_text = "2025-02-08 10:15:30 WARN Attempted SELECT * FROM users";
+my @threats = $detector.analyze-text($log_text);
+Raku IAM Policy Analysis:
+raku
+
+Copy
+my $analyzer = IAMPolicyAnalyzer.new;
+my $policy_doc = q:to/END/;
+Users can read customer data when authenticated.
+Admins are allowed to modify system settings.
+END
+
+my @rules = $analyzer.extract-rules($policy_doc);
+Scheme Symbolic Reasoning:
+scheme
+
+Copy
+(define engine (make-inference-engine))
+
+; Add cybersecurity rules
+((engine 'add-rule)
+ '(connection ? port 80)
+ '(web-traffic ?)
+ 0.9)
+
+; Query patterns
+((engine 'query) '(connection 192.168.1.1 port 80))
